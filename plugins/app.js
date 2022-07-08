@@ -1,6 +1,33 @@
 const Hapi = require('@hapi/hapi');
-const dogRoutes = require('./routes/dog');
+const routes = require('./routes');
 
+const myplugin = {  
+  register: function (server, options, next) {
+    next()
+  }
+}
+
+myplugin.register.attributes = {  
+  name: 'myplugin',
+  version: '1.0.0'
+}
+
+//Bind routes.
+const bindRoutes = (server)=>{
+
+  const routes = [{
+      method:'GET',
+      path:'/car',
+      handler:(request,h)=>{
+          return 'Hello user :)';
+      }
+    }];
+
+  server.route(routes);
+
+}
+
+//Init server.
 const init = async ()=>{
   
   try{
@@ -12,7 +39,7 @@ const init = async ()=>{
     });
 
     //Bind routes.
-    dogRoutes.bind(server);
+    bindRoutes(server);
 
     //Listen.
     await server.start();

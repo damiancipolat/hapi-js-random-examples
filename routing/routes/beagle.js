@@ -3,13 +3,13 @@ const bind = (server)=>{
 
     const routes = [{
         method:'GET',
-        path:'/user',
+        path:'/dog/beagle/',
         handler:(request,h)=>{
-            return 'Hello user :)';
+            return 'Hello beagle :)';
         }
       },{
         method:'GET',
-        path:'/user/{id}',
+        path:'/dog/beagle/{id}',
         handler:(request,h)=>{
   
           const {
@@ -17,11 +17,11 @@ const bind = (server)=>{
           } = request.params;
           console.log('> Params',id);
   
-          return 'Hello world :) '+id;
+          return 'Hello beagle N° :) '+id;
         }
       },{
         method:'POST',
-        path:'/user',
+        path:'/dog/beagle',
         handler:(request,h)=>{
   
           const {

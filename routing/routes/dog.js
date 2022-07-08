@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const nested = require('./nested');
+const beagleRoutes = require('./beagle');
 
 //Bind routes.
 const bind = (server)=>{
@@ -9,10 +9,10 @@ const bind = (server)=>{
       method:'GET',
       path:'/dog',
       handler: (request, h)=>{        
-        const user = {
-          firstName: 'John',
-          lastName: 'Doe',
-          userName: 'JohnDoe',
+        const dog = {
+          color: 'black/marron/white',
+          name: 'Rocko',
+          type: 'Beagle',
           id: 123
         };
 
@@ -29,7 +29,7 @@ const bind = (server)=>{
         }
       },
       handler: (request, reply)=>{
-        return 'Hello Future Studio';
+        return 'Hello dog '+name;
       }
     },{
       method: 'POST',
@@ -48,10 +48,12 @@ const bind = (server)=>{
     }    
   ];
   
+  //Bind routes.
   server.route(routes);
 
-  nested.bind(server)
-  
+  //Bind nested routes -> hapi dont provide a builtin nested routes support.
+  beagleRoutes.bind(server);
+
 };
 
 module.exports = {
