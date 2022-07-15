@@ -20,6 +20,13 @@ const bind = (server)=>{
       }
     },{
       method: 'GET',
+      path: '/dog/test',
+      handler: function (request, h) {
+        const data = { key: 'value' };        
+        return h.response(data).code(201)
+      }
+    }    ,{
+      method: 'GET',
       path: '/dog/{name}',
       options: {
         validate: {
